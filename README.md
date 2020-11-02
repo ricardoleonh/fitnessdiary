@@ -29,7 +29,7 @@ FEATURE LIST
 - [Bootstrap] Make is look pretty and professional.
 
 Resources
-- Send_email Function https://docs.djangoproject.com/en/3.1/topics/email/
+- Send_email Method https://docs.djangoproject.com/en/3.1/topics/email/
 - Bootstrap https://getbootstrap.com/
 
 GitHub REPO https://github.com/ricardoleonh/fitnessdiary
