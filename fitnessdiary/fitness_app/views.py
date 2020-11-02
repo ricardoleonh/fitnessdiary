@@ -12,6 +12,14 @@ def signin(request):
 def register_form(request):
     return render(request, 'registration.html')
 
+def edit_account(request, id):
+    if 'user_id' not in request.session:
+        return redirect('/')
+    context = {
+        'user': User.objects.get(id=id)
+    }
+    return render(request, "edit_account.html", context)
+
 def login(request):
     if request.method == 'POST':
         errors = User.objects.log_validator(request.POST) #to validate the form is completed correctly
@@ -60,3 +68,4 @@ def registration(request):
         request.session['user_id'] = new_user.id
         return redirect ('/dashboard')
     return redirect ('/')
+
