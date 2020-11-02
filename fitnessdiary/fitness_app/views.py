@@ -28,10 +28,14 @@ def login(request):
         return redirect('/dashboard')
     return render(request, "dashboard.html") 
 
-def dashboard(request):
+def dashboard(request, id):
     if 'user_id' not in request.session: #validate user is logged in
         return redirect('/')
-    return render (request, 'dashboard.html')
+    user = User.objects.get(id=request.session.user_id) #will pass id belong to the user
+    context = {
+        'user' : user
+    }
+    return render (request, 'dashboard.html', context)
 
 def registration(request):
     if request.method == 'POST':
