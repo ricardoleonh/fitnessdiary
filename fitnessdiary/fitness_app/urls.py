@@ -7,5 +7,5 @@ path('register', views.register_form),
 path('login', views.login),
 path('dashboard', views.dashboard),
 path('registration', views.registration),
-
+path('myaccount/<int:id>', views.edit_account),
 ]
