@@ -5,7 +5,7 @@ path('', views.index),
 path('signin', views.signin),
 path('register', views.register_form),
 path('login', views.login),
-path('dashboard', views.dashboard),
+path('dashboard/<int:id>', views.dashboard),
 path('registration', views.registration),
 
 ]
