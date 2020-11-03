@@ -8,4 +8,5 @@ path('login', views.login),
 path('dashboard', views.dashboard),
 path('registration', views.registration),
 path('myaccount/<int:id>', views.edit_account),
+path('back', views.back),
 ]

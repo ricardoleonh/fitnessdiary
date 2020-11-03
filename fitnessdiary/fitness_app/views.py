@@ -20,6 +20,11 @@ def edit_account(request, id):
     }
     return render(request, "edit_account.html", context)
 
+def back(request):
+    if 'user_id' not in request.session: #validate user is logged in
+        return redirect('/')
+    return redirect('/dashboard')
+
 def login(request):
     if request.method == 'POST':
         errors = User.objects.log_validator(request.POST) #to validate the form is completed correctly
