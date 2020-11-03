@@ -25,6 +25,10 @@ def back(request):
         return redirect('/')
     return redirect('/dashboard')
 
+def logout(request):
+    request.session.flush()
+    return redirect('/')
+
 def login(request):
     if request.method == 'POST':
         errors = User.objects.log_validator(request.POST) #to validate the form is completed correctly
