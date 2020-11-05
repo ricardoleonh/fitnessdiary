@@ -1,52 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        {% load static %}
-        <link rel="stylesheet" href="{% static 'edit_account.css' %}">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
-        <title>Edit</title>
-    </head>
-    <body>
-        {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}
-        <div class="container">
-            <div class="row">
-                <div class="col-md-5">
-                    <h1 class="text-center">Edit Account</h1>
-                    <form action="/update" method="POST">
-                        {% csrf_token %}
-                        <label class="label control-label">First Name</label>
-                        <div class="input-group">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                            <input type="text" class="form-control" id="first_name" name="first_name" placeholder="{{user.first_name}}">
-                        </div>
-                        <label class="label control-label">Last Name</label>
-                        <div class="input-group">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                            <input type="text" class="form-control" id="last_name" name="last_name" placeholder="{{user.last_name}}">
-                        </div>
-                        <label class="label control-label">E-mail</label>
-                        <div class="input-group">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
-                            <input type="text" class="form-control" id="email" name="email" placeholder="{{user.email}}">
-                        </div>
-                        
-                        <div>
-                            <button class="btn btn-primary btn-sm">Update</button>
-                            <p class="text-center"> <a href="/back" role="button" class="btn btn-light btn-sm">Back</a></p>
-                            <p class="text-center"> <a href="/delete_account" role="button" class="btn btn-danger btn-sm">Delete Account</a></p>
-                        </div>
-                        
-                    </form>
-                </div>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Account</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'dashboard.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
+  </head>
+  <body>
+
+    <input type="checkbox" id="check">
+    <!--header area start-->
+    <header>
+      <label for="check">
+        <i class="fas fa-bars" id="sidebar_btn"></i>
+      </label>
+      <div class="left_area">
+        <h3>Fitness <span>Diary</span></h3>
+      </div>
+      <div class="right_area">
+        <a href="logout" class="logout_btn">Logout</a>
+      </div>
+    </header>
+    <!--header area end-->
+    <!--mobile navigation bar start-->
+    <div class="mobile_nav">
+      <div class="nav_bar">
+        <img src="static/avatar.png" class="mobile_profile_image" alt="">
+        <i class="fa fa-bars nav_btn"></i>
+      </div>
+      <div class="mobile_nav_items">
+        <a href="/back"><i class="fas fa-desktop"></i><span>Dashboard</span></a>
+        <a href="createroutine"><i class="fas fa-table"></i><span>Create Routines</span></a>
+        <a href="/back"><i class="fas fa-undo-alt"></i></i><span>Back</span></a>
+      <a href="myaccount/{{request.session.user_id}}"><i class="fas fa-trash"></i></i><span>Delete Account</span></a>
+      </div>
+    </div>
+    <!--mobile navigation bar end-->
+    <!--sidebar start-->
+    <div class="sidebar">
+      <div class="profile_info">
+        <img src="static/avatar.png" class="profile_image" alt="">
+        <h4>{{user.user_name}}</h4>
+      </div>
+      <a href="/back"><i class="fas fa-desktop"></i><span>Dashboard</span></a>
+      <a href="#"><i class="fas fa-table"></i><span>Create Routines</span></a>
+      <a href="/back"><i class="fas fa-undo-alt"></i><span>Back</span></a>
+      <a href="myaccount/{{request.session.user_id}}"><i class="fas fa-trash"></i></i><span>Delete Account</span></a>
+ 
+    </div>
+    <!--sidebar end-->
+
+    <div class="content">
+        <form action="/update" method="POST">
+            {% csrf_token %}
+            <label class="label control-label">First Name</label>
+            <div class="input-group">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                <input type="text" class="form-control" id="first_name" name="first_name" placeholder="{{user.first_name}}">
             </div>
-        </div>
-    </body>
+            <label class="label control-label">Last Name</label>
+            <div class="input-group">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                <input type="text" class="form-control" id="last_name" name="last_name" placeholder="{{user.last_name}}">
+            </div>
+            <label class="label control-label">E-mail</label>
+            <div class="input-group">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+                <input type="text" class="form-control" id="email" name="email" placeholder="{{user.email}}">
+            </div>
+        </form>
+    </div>
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+      $('.nav_btn').click(function(){
+        $('.mobile_nav_items').toggleClass('active');
+      });
+    });
+    </script>
+
+  </body>
 </html>
