@@ -25,6 +25,14 @@ SECRET_KEY = '72rx9o#rc!sny2t&p8*2)1luu32_8p2w2myi+n!xuxoic9gq&y'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# SMTP SERVER
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'fitnessdiary1110@gmail.com'
+EMAIL_HOST_PASSWORD = '$FD1110!'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
 ALLOWED_HOSTS = []
 
 
@@ -119,3 +127,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+
