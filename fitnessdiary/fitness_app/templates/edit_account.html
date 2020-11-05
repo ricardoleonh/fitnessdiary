@@ -21,19 +21,17 @@
         <h3>Fitness <span>Diary</span></h3>
       </div>
       <div class="right_area">
-        <a href="logout" class="logout_btn">Logout</a>
+        <a href="/logout" class="logout_btn">Logout</a>
       </div>
     </header>
     <!--header area end-->
     <!--mobile navigation bar start-->
     <div class="mobile_nav">
       <div class="nav_bar">
-        <img src="static/avatar.png" class="mobile_profile_image" alt="">
+        <img src="/static/avatar.png" class="mobile_profile_image" alt="">
         <i class="fa fa-bars nav_btn"></i>
       </div>
       <div class="mobile_nav_items">
-        <a href="/back"><i class="fas fa-desktop"></i><span>Dashboard</span></a>
-        <a href="createroutine"><i class="fas fa-table"></i><span>Create Routines</span></a>
         <a href="/back"><i class="fas fa-undo-alt"></i></i><span>Back</span></a>
       <a href="myaccount/{{request.session.user_id}}"><i class="fas fa-trash"></i></i><span>Delete Account</span></a>
       </div>
@@ -42,11 +40,9 @@
     <!--sidebar start-->
     <div class="sidebar">
       <div class="profile_info">
-        <img src="static/avatar.png" class="profile_image" alt="">
+        <img src="/static/avatar.png" class="profile_image" alt="">
         <h4>{{user.user_name}}</h4>
       </div>
-      <a href="/back"><i class="fas fa-desktop"></i><span>Dashboard</span></a>
-      <a href="#"><i class="fas fa-table"></i><span>Create Routines</span></a>
       <a href="/back"><i class="fas fa-undo-alt"></i><span>Back</span></a>
       <a href="myaccount/{{request.session.user_id}}"><i class="fas fa-trash"></i></i><span>Delete Account</span></a>
  
@@ -71,6 +67,13 @@
                 <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
                 <input type="text" class="form-control" id="email" name="email" placeholder="{{user.email}}">
             </div>
+            <br>
+            <br>
+            <br>
+            <div>
+                <a href="update" role="button"><i class="fas fa-pen-alt">Update</i></a>
+            </div>
+
         </form>
     </div>
 

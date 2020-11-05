@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.core.mail import send_mail
+from django.conf import settings
 from .models import *
 import bcrypt
 
@@ -80,6 +82,11 @@ def registration(request):
         request.session['user_last_name'] = new_user.last_name
         request.session['user_email'] = new_user.email
         request.session['user_id'] = new_user.id
+        send_mail('Welcome to Fitness Diary', 
+        f'Hello {user_first_name}! Thank you for joining us and hope you enjoy this app as much as we did developing', 
+        settings.EMAIL_HOST_USER, 
+        new_user.email, 
+        fail_silently=False)
         return redirect ('/dashboard')
     return redirect ('/')
 
