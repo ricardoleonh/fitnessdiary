@@ -20,6 +20,15 @@ def edit_account(request, id):
     }
     return render(request, "edit_account.html", context)
 
+def dashboard(request):
+    if 'user_id' not in request.session: #validate user is logged in
+        return redirect('/')
+    user = User.objects.get(id=request.session['user_id']) #will pass id belong to the user
+    context = {
+        'user' : user
+    }
+    return render (request, 'dashboard.html', context)
+
 def back(request):
     if 'user_id' not in request.session: #validate user is logged in
         return redirect('/')
@@ -28,6 +37,11 @@ def back(request):
 def logout(request):
     request.session.flush()
     return redirect('/')
+
+def createroutine(request):
+    if 'user_id' not in request.session:
+        return redirect('/')
+    return render(request, 'create_routine.html')
 
 def login(request):
     if request.method == 'POST':
@@ -44,15 +58,6 @@ def login(request):
         request.session['user_id'] = this_user.id
         return redirect('/dashboard')
     return render(request, "dashboard.html") 
-
-def dashboard(request):
-    if 'user_id' not in request.session: #validate user is logged in
-        return redirect('/')
-    user = User.objects.get(id=request.session['user_id']) #will pass id belong to the user
-    context = {
-        'user' : user
-    }
-    return render (request, 'dashboard.html', context)
 
 def registration(request):
     if request.method == 'POST':
@@ -78,3 +83,9 @@ def registration(request):
         return redirect ('/dashboard')
     return redirect ('/')
 
+def delete_account(request, user_id):
+    if 'user_id' not in request.session:
+        return redirect('/')   
+    user = User.objects.get(id=id)
+    user.delete()
+    return redirect('/')

@@ -17,7 +17,7 @@ class UserManager(models.Manager): # Validates the regitration form is complete 
         if len(postData['user_name']) == 0:
             errors['user_name'] = "User Name is Required"
         if len(postData['user_name']) < 5:
-            errors['user_name'] = "User Name must be at least 2 characters long"
+            errors['user_name'] = "User Name must be at least 5 characters long"
         existing_user_name = User.objects.filter(user_name=postData['user_name'])
         if len(existing_user_name) > 0:
             errors['user_name'] = "User Name already in use"
