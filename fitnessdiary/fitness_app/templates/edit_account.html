@@ -50,7 +50,7 @@
     <!--sidebar end-->
 
     <div class="content">
-        <form action="/update" method="POST">
+        <form action="/update/{{request.session.user_id}}" method="POST">
             {% csrf_token %}
             <label class="label control-label">First Name</label>
             <div class="input-group">
@@ -71,7 +71,7 @@
             <br>
             <br>
             <div>
-                <a href="update" role="button"><i class="fas fa-pen-alt">Update</i></a>
+                <a href="/update/{{request.session.user_id}}" role="button"><i class="fas fa-pen-alt">Update</i></a>
             </div>
 
         </form>

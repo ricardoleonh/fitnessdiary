@@ -86,7 +86,7 @@ def registration(request):
         request.session['user_email'] = new_user.email
         request.session['user_id'] = new_user.id
         send_mail('Welcome to Fitness Diary', 
-        f'Hello {{new_user.first_name}}! Thank you for joining us and hope you enjoy this app as much as we did developing', 
+        f'Hello {new_user.first_name}! Thank you for joining us and hope you enjoy this app as much as we did developing', 
         settings.EMAIL_HOST_USER, 
         [new_user.email], 
         fail_silently=False)
@@ -99,3 +99,13 @@ def delete_account(request):
     user = User.objects.get(id=request.session['user_id'])
     user.delete()
     return redirect('/')
+
+def update_account(request, id):
+    if 'user_id' not in request.session:
+        return redirect('/')
+    user = User.objects.get(id=request.session['user_id'])
+    user.first_name = request.POST['first_name']
+    user.last_name = request.POST['last_name']
+    user.email = request.POST['email']
+    user.save()
+    return redirect('/edit_account')
