@@ -11,5 +11,5 @@ path('myaccount/<int:id>', views.edit_account),
 path('back', views.back),
 path('logout', views.logout),
 path('createroutine', views.createroutine),
-path('delete_account/<int:id>', views.delete_account)
+path('delete_account', views.delete_account)
 ]

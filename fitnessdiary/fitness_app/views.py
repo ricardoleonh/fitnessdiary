@@ -43,7 +43,11 @@ def logout(request):
 def createroutine(request):
     if 'user_id' not in request.session:
         return redirect('/')
-    return render(request, 'create_routine.html')
+    user = User.objects.get(id=request.session['user_id']) #will pass id belong to the user
+    context = {
+        'user' : user
+    }
+    return render(request, 'create_routine.html', context)
 
 def login(request):
     if request.method == 'POST':
@@ -78,21 +82,20 @@ def registration(request):
         )
         request.session['user_user_name'] = new_user.user_name
         request.session['user_first_name'] = new_user.first_name
-        request.session['user_first_name'] = new_user.first_name
         request.session['user_last_name'] = new_user.last_name
         request.session['user_email'] = new_user.email
         request.session['user_id'] = new_user.id
         send_mail('Welcome to Fitness Diary', 
-        f'Hello {user_first_name}! Thank you for joining us and hope you enjoy this app as much as we did developing', 
+        f'Hello {{new_user.first_name}}! Thank you for joining us and hope you enjoy this app as much as we did developing', 
         settings.EMAIL_HOST_USER, 
-        new_user.email, 
+        [new_user.email], 
         fail_silently=False)
         return redirect ('/dashboard')
     return redirect ('/')
 
-def delete_account(request, user_id):
+def delete_account(request):
     if 'user_id' not in request.session:
         return redirect('/')   
-    user = User.objects.get(id=id)
+    user = User.objects.get(id=request.session['user_id'])
     user.delete()
     return redirect('/')
