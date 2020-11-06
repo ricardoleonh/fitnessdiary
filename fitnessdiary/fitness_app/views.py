@@ -103,9 +103,9 @@ def delete_account(request):
 def update_account(request, id):
     if 'user_id' not in request.session:
         return redirect('/')
-    user = User.objects.get(id=request.session['user_id'])
-    user.first_name = request.POST['first_name']
-    user.last_name = request.POST['last_name']
-    user.email = request.POST['email']
-    user.save()
+    edit_user = User.objects.get(id=id)
+    edit_user.first_name = request.POST['first_name']
+    edit_user.last_name = request.POST['last_name']
+    edit_user.email = request.POST['email']
+    edit_user.save()
     return redirect('/edit_account')
