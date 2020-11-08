@@ -52,7 +52,29 @@
     <!--sidebar end-->
 
     <div class="content">
-        
+      <h3>All Routines</h3>
+      {% for new_routine in routines_all %}
+      {% if new_routine.routine_creator == user %}
+        <table class="table">
+            <thead>
+                <th>Routine Name</th>
+                <th>Date Added</th>
+                <th>Actions</th>
+            </thead>
+            <tbody class="tbody">
+                
+                <tr>
+                    <td>{{ new_routine.routine_name }}</td>
+                    <td>{{ new_routine.created_at|date:'M d, Y' }}</td>
+                    <td>
+                        <a href="/all_routines/{{new_routine.id}}" class="badge badge-info">View</a>
+                        <a href="/delete_routine/{{new_routine.id}}" class="badge badge-danger">Remove</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+      {% endif %}
+      {% endfor %}
     </div>
 
     <script type="text/javascript">
