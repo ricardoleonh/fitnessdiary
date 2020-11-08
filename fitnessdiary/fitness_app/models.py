@@ -49,6 +49,7 @@ class UserManager(models.Manager): # Validates the regitration form is complete 
             errors['user_name'] = "User Name and password do no match"
         return errors
 
+
 class User(models.Model):
     user_name = models.CharField(max_length=10)
     first_name = models.CharField(max_length=45)
@@ -59,3 +60,24 @@ class User(models.Model):
     updated_at = models.DateField(auto_now=True)
     objects = UserManager()
 
+class Routine(models.Model):
+    routine_name = models.CharField(max_length=45)
+    chest_a = models.CharField(max_length=45)
+    chest_b = models.CharField(max_length=45)
+    chest_c = models.CharField(max_length=45)
+    back_a = models.CharField(max_length=45)
+    back_b = models.CharField(max_length=45)
+    back_c = models.CharField(max_length=45)
+    legs_a = models.CharField(max_length=45)
+    legs_b = models.CharField(max_length=45)
+    legs_c = models.CharField(max_length=45)
+    arms_a = models.CharField(max_length=45)
+    arms_b = models.CharField(max_length=45)
+    arms_c = models.CharField(max_length=45)
+    routine_creator = models.ForeignKey(User, related_name='routines_crated', on_delete=models.CASCADE)
+    routines_added_by = models.ManyToManyField(User, related_name='routine_added')
+    completed_at = models.DateField(auto_now=True)
+    created_at = models.DateField(auto_now_add=True)
+    updated_at = models.DateField(auto_now=True)
+
+     
