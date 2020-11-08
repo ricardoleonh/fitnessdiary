@@ -57,45 +57,87 @@
             <h2>Create your Routine</h2>
             <form action="/create_routine" method="post">
                 {% csrf_token %}
-                <div class="form-group">
-                  <label for="first_name"> <h2>Routine Name</h2></label>
-                  <input type="text" name="first_name" id="first_name" class="form-control">
-                  <br>
-                  <br>
+                <table class="table">
+                  <thead>
+                      <th>Routine Name</th>
+                  </thead>
+                  <tbody class="tbody">
+                      
+                      <tr>
+                          <td><input type="text" name="routine_name" id="routine_name" class="form-control"></td>
+                      </tr>
+                  </tbody>
+              </table>
+              <br>
+              <br>
+              <br>
+              <br>
+              <table class="table">
+                <thead>
+                  <th>Chest</th>
+                  <th>Excercise 1</th>
+                  <th>Excercise 2</th>
+                  <th>Excercise 3</th>
+                </thead>
+                <tbody class="tbody">
+                  <tr>
+                      <td></td>
+                      <td><input type="text" name="chest_a" id="chest_a" class="form-control"></td>
+                      <td><input type="text" name="chest_b" id="chest_b" class="form-control"></td>
+                      <td><input type="text" name="chest_c" id="chest_c" class="form-control"></td>
+                  </tr>
+                </tbody>
+              </table>
               </div>
-                <div class="form-group">
-                    <label for="first_name">Chest</label>
-                    <input type="text" name="first_name" id="first_name" class="form-control">
-                    <input type="text" name="first_name" id="first_name" class="form-control">
-                    <input type="text" name="first_name" id="first_name" class="form-control">
-                    <br>
-                    <br>
-                </div>
-                <div class="form-group">
-                    <label for="last_name">Back</label>
-                    <input type="text" name="last_name" id="last_name" class="form-control">
-                    <input type="text" name="last_name" id="last_name" class="form-control">
-                    <input type="text" name="last_name" id="last_name" class="form-control">
-                    <br>
-                    <br>
-                </div>
-                <div class="form-group">
-                    <label for="email">Legs</label>
-                    <input type="email" name="email" id="email" class="form-control">
-                    <input type="text" name="last_name" id="last_name" class="form-control">
-                    <input type="text" name="last_name" id="last_name" class="form-control">
-                    <br>
-                    <br>
-                </div>
-                <div class="form-group">
-                    <label for="password">Arms</label>
-                    <input type="password" name="password" id="password" class="form-control">
-                    <input type="text" name="last_name" id="last_name" class="form-control">
-                    <input type="text" name="last_name" id="last_name" class="form-control">
-                    <br>
-                    <br>
-                </div>
-                <button class="btn btn-primary">Create</button>
+              <table class="table">
+                <thead>
+                  <th>Back</th>
+                  <th>Excercise 1</th>
+                  <th>Excercise 2</th>
+                  <th>Excercise 3</th>
+                </thead>
+                <tbody class="tbody">
+                  <tr>
+                      <td></td>
+                      <td><input type="text" name="back_a" id="back_a" class="form-control"></td>
+                      <td><input type="text" name="back_b" id="back_b" class="form-control"></td>
+                      <td><input type="text" name="back_c" id="back_c" class="form-control"></td>
+                  </tr>
+                </tbody>
+              </table>
+              <table class="table">
+                <thead>
+                  <th>Legs</th>
+                  <th>Excercise 1</th>
+                  <th>Excercise 2</th>
+                  <th>Excercise 3</th>
+                </thead>
+                <tbody class="tbody">
+                  <tr>
+                      <td></td>
+                      <td><input type="text" name="legs_a" id="legs_a" class="form-control"></td>
+                      <td><input type="text" name="legs_b" id="legs_b" class="form-control"></td>
+                      <td><input type="text" name="legs_c" id="legs_c" class="form-control"></td>
+                  </tr>
+                </tbody>
+              </table>
+              <table class="table">
+                <thead>
+                  <th>Arms</th>
+                  <th>Excercise 1</th>
+                  <th>Excercise 2</th>
+                  <th>Excercise 3</th>
+                </thead>
+                <tbody class="tbody">
+                  <tr>
+                      <td></td>
+                      <td><input type="text" name="arms_a" id="arms_a" class="form-control"></td>
+                      <td><input type="text" name="arms_b" id="arms_b" class="form-control"></td>
+                      <td><input type="text" name="arms_c" id="arms_c" class="form-control"></td>
+                  </tr>
+                </tbody>
+              </table>
+                <button class="create">Create</button>
             </form>
         </section>
         
