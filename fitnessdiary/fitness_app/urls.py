@@ -12,5 +12,8 @@ path('back', views.back),
 path('logout', views.logout),
 path('createroutine', views.createroutine),
 path('delete_account', views.delete_account),
-path('update/<int:id>', views.update_account)
+path('delete_routine/<int:id>', views.delete_routine),
+path('update/<int:id>', views.update_account),
+path('all_routines/<int:id>', views.all_routines),
+path('create_routine', views.add_routine),
 ]
