@@ -27,9 +27,19 @@ def dashboard(request):
         return redirect('/')
     user = User.objects.get(id=request.session['user_id']) #will pass id belong to the user
     context = {
-        'user' : user
+        'user' : user,
+        'routines_all': Routine.objects.all(),
     }
     return render (request, 'dashboard.html', context)
+
+def all_routines(request, id):
+    if 'user_id' not in request.session:
+        return redirect('/')
+    context = {
+        'routines_all': Routine.objects.get(id=id),
+        'user' : User.objects.get(id=request.session['user_id'])
+    }
+    return render (request, 'routine.html', context, id)
 
 def back(request):
     if 'user_id' not in request.session: #validate user is logged in
@@ -86,7 +96,7 @@ def registration(request):
         request.session['user_email'] = new_user.email
         request.session['user_id'] = new_user.id
         send_mail('Welcome to Fitness Diary', 
-        f'Hello {new_user.first_name}! Thank you for joining us and hope you enjoy this app as much as we did developing', 
+        f'Hello {new_user.user_name}! Thank you for joining us and hope you enjoy this app as much as we did developing', 
         settings.EMAIL_HOST_USER, 
         [new_user.email], 
         fail_silently=False)
@@ -109,3 +119,34 @@ def update_account(request, id):
     edit_user.email = request.POST['email']
     edit_user.save()
     return redirect('/edit_account')
+
+def add_routine(request):
+    if 'user_id' not in request.session:
+        return redirect('/')
+    user = User.objects.get(id=request.session['user_id'])
+    new_routine = Routine.objects.create(
+        routine_name = request.POST['routine_name'],
+        chest_a = request.POST['chest_a'],
+        chest_b = request.POST['chest_b'],
+        chest_c = request.POST['chest_c'],
+        back_a = request.POST['back_a'],
+        back_b = request.POST['back_b'],
+        back_c = request.POST['back_c'],
+        legs_a = request.POST['legs_a'],
+        legs_b = request.POST['legs_b'],
+        legs_c = request.POST['legs_c'],
+        arms_a = request.POST['arms_a'],
+        arms_b = request.POST['arms_b'],
+        arms_c = request.POST['arms_c'],
+        routine_creator = user
+    )
+    request.session['routine_id'] = new_routine.id
+    request.session['routine_routine_name'] = new_routine.routine_name
+    return redirect('/dashboard')
+
+def delete_routine(request, id):
+    if 'user_id' not in request.session:
+        return redirect('/')   
+    routine = Routine.objects.get(id=id)
+    routine.delete()
+    return redirect('/dashboard')
